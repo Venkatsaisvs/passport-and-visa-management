@@ -1,0 +1,123 @@
+
+<div class="container w-75">
+<h1 class=" text-primary " style="margin-left: 325px;">Apply Passport</h1>
+<div align="centre" class="md-4">
+    <form [formGroup]="loginForm" class="border border-primary p-2 rounded shadow-md">
+        <div class="form-group">
+            First Name:
+            
+                <input onkeypress="return /[a-z]/i.test(event.key)" class="form-control" formControlName="firstName"
+                    placeholder="First Name">
+                    <div *ngIf="formControl.firstName.errors">
+                    <div *ngIf="formControl.firstName.errors.required && formControl.firstName.touched"
+                    [ngClass]="{'text-danger':formControl.firstName.errors}">*Required Field</div>
+                <div *ngIf="(formControl.firstName.touched || formControl.firstName.dirty) && formControl.firstName.invalid"
+                    [ngClass]="{'text-danger':formControl.firstName.errors.minlength}">* Minimum length 3 is
+                    required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            Last Name:
+            <input onkeypress="return /[a-z]/i.test(event.key)" class="form-control" formControlName="lastName" placeholder="Last Name">
+            <div *ngIf="formControl.lastName.errors">
+                <div *ngIf="formControl.lastName.errors.required && formControl.lastName.touched"
+                    [ngClass]="{'text-danger':formControl.lastName.errors}">*Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            e-mail id:
+            <input type="email" class="form-control" formControlName="eMail" placeholder="e-mail">
+            <div *ngIf="formControl.eMail.errors">
+                <div *ngIf="formControl.eMail.errors.required && formControl.eMail.touched"
+                    [ngClass]="{'text-danger':formControl.eMail.errors}">*Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            Gender:
+            <input type="radio" class="" formControlName="gender" id="rdoMale" value="male"><label
+                for="rdoMale">Male</label>&nbsp;
+            <input type="radio" class="" formControlName="gender" id="rdoMale" value="female"><label
+                for="rdoFemle">Female</label>&nbsp;
+            <input type="radio" class="" formControlName="gender" id="rdoOthers" value="others"><label
+                for="rdoOthers">Others</label>
+        </div>
+        <div class="form-group">
+            Date Of Birth:
+            <input type="date" class="form-control" [max]="todayStr" formControlName="dateOfBirth">
+            <div *ngIf="formControl.dateOfBirth.errors">
+                <div *ngIf="formControl.dateOfBirth.errors.required && formControl.dateOfBirth.touched"
+                    [ngClass]="{'text-danger':formControl.dateOfBirth.errors}">*Required field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            Place Of Birth:
+            <input onkeypress="return /[a-z]/i.test(event.key)" class="form-control" formControlName="placeOfBirth" placeholder="Place Of Birth">
+            <div *ngIf="formControl.placeOfBirth.errors">
+                <div *ngIf="formControl.placeOfBirth.errors.required && formControl.placeOfBirth.touched"
+                    [ngClass]="{'text-danger':formControl.placeOfBirth.errors}">*Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            Contact Number:
+
+            <div
+                [ngClass]="{'has-error':formControl.contactNumber.errors && (formControl.contactNumber.touched || formControl.contactNumber.dirty)}">
+                <input type="number" formControlName="contactNumber" class="form-control">
+                <span class="text-danger"
+                    *ngIf="formControl.contactNumber.errors && (formControl.contactNumber.touched || formControl.contactNumber.dirty)">
+                    *Contact Number invalid
+                    <span class="text-danger" *ngIf="formControl.contactNumber.errors.required">
+                        *Required field
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            Aadhar:
+            <input
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type="number" maxlength="12" class="form-control" formControlName="aadhar" placeholder="Aadhar number">
+            <div *ngIf="formControl.aadhar.errors">
+                <div *ngIf="formControl.aadhar.errors.required && formControl.aadhar.touched"
+                    [ngClass]="{'text-danger':formControl.aadhar.errors}">*Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            Address: <br>
+            <textarea formControlName="address" cols="25" rows="5" class="form-control"></textarea>
+            <div *ngIf="formControl.address.errors">
+                <div *ngIf="formControl.address.errors.required && formControl.address.touched"
+                    [ngClass]="{'text-danger':formControl.address.errors}">*Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            State:
+            <input onkeypress="return /[a-z]/i.test(event.key)" class="form-control" formControlName="state" placeholder="State">
+            <div *ngIf="formControl.state.errors">
+                <div *ngIf="formControl.state.errors.required && formControl.state.touched"
+                    [ngClass]="{'text-danger':formControl.state.errors}">*Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            City:
+            <input onkeypress="return /[a-z]/i.test(event.key)" class="form-control" formControlName="city" placeholder="City">
+            <div *ngIf="formControl.city.errors">
+                <div *ngIf="formControl.city.errors.required && formControl.city.touched"
+                    [ngClass]="{'text-danger':formControl.city.errors}">*Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            Nationality:
+            <input onkeypress="return /[a-z]/i.test(event.key)" class="form-control" formControlName="nationality" placeholder="Nationality">
+            <div *ngIf="formControl.nationality.errors">
+                <div *ngIf="formControl.nationality.errors.required && formControl.nationality.touched"
+                    [ngClass]="{'text-danger':formControl.nationality.errors}">*Required Field</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-info">
+        </div>
+    </form>
+</div>
+</div>

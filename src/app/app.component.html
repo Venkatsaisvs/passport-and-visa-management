@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="app.component.css">
+
+<style>
+.dropdown-content {
+  display: none;
+}
+.dropdown:hover .dropdown-content {display: block;}
+</style>
+
+
+<div class="container-fluid">
+  <nav
+    class="navbar navbar-expand-md py=0  navbar-light sticky-top" style="background-color: #ddeeff;"
+  >
+    <a class="navbar-brand"  [routerLink]="['']"
+      ><img src="../../assets/images/logo.png"  width="125px"><b>Passport And Visa Management</b>
+    </a>
+    <button
+      type="button"
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto ">
+        <li class="nav-item-md ">
+          <a class="nav-link" [routerLink]="['']" routerLinkactive="['active']">Home</a>
+        </li>
+
+
+        
+<li class="nav-item dropdown" data-toggle="dropdown">
+
+  <a class="nav-link dropdown   dropdown-toggle"  [routerLink]="['dashboardmain']" routerLinkactive="['active']" >Services</a>
+  
+  <div class="dropdown-menu dropdown-menu-right dropdown-content">
+  
+  <a class="dropdown-item" [routerLink]="['dashboardmain/passportservices']" routerLinkactive="['active']" >Passport Services</a>
+  
+  <a class="dropdown-item"[routerLink]="['dashboardmain/visaservices']" routerLinkactive="['active']" >Visa Services</a>
+  
+  <a class="dropdown-item"  [routerLink]="['tracking']" routerLinkactive="['active']" >Application Status</a>
+  
+  </div>
+  
+  </li>
+          <li>
+          <a class="nav-link"[routerLink]="['Contactus']" routerLinkactive = "['active']">Contact us</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"[routerLink]="['login']" routerLinkactive="['active']">Login</a></li>
+        <li class="nav-item"><a class="nav-link"[routerLink]="['signup']" routerLinkactive="['active']">Sign up</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>
+
+
+  <div  class="footer-dark">
+    <footer >
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a [routerLink]="['dashboardmain/passportservices']">Passport Services</a></li>
+                        <li><a [routerLink]="['dashboardmain/visaservices']" >Visa Services</a></li>
+                        <li><a [routerLink]="['tracking']">Application Status</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a [routerLink]="['Contactus']" >Team</a></li>
+                    
+                    </ul>
+                </div>
+                <div class="col-md-6 item text">
+                    <h3>Passport And Visa Management</h3>
+                    <p>This Portal Allows Users to Avail Passport And Visa Services Online</p>
+                </div>
+                <div class="col item social"><a href="www.facebook.com" target="blank"><i class="icon ion-social-facebook"></i></a><a href="www.twitter.com" target="blank" ><i class="icon ion-social-twitter"></i></a><a href="www.instagram.com" target="blank"><i class="icon ion-social-instagram"></i></a></div>
+            </div>
+            <p class="copyright"></p>Passport And Visa Management © 2021
+        </div>
+    </footer>
+</div>
+

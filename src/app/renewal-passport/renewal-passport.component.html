@@ -1,0 +1,93 @@
+
+<div class="container mt-4 pt-4">
+    <form [formGroup]="loginForm" class="border border-primary p-2 rounded shadow-md">
+        <div class="form-group">
+            <h2 class="text-center text-primary">Passport Renewal</h2>
+        </div>
+        
+        <label >Passport Number:</label>
+        <div class="form-group">
+            <div [ngClass]="{'has-error':formControl.passportNumber.errors && (formControl.passportNumber.touched || formControl.passportNumber.dirty)}">
+              <input type="text" formControlName="passportNumber" maxlength="8" class="form-control" placeholder="Passport number">
+              <span class="text-danger" *ngIf="formControl.passportNumber.errors && (formControl.passportNumber.touched || formControl.passportNumber.dirty)">
+                  *Invalid Passport Number
+                  <span class="text-danger" *ngIf="formControl.passportNumber.errors.required">
+                      *Required field
+                  </span>
+              </span></div></div>
+
+
+
+        <!-- <div class="form-group">
+            <input 
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                formControlName="passportNumber" 
+                type="number"  
+                maxlength="10" 
+                class="form-control"
+            placeholder="Passport number" formControlName="passportNumber">
+            <div *ngIf="formControl.passportNumber.errors && formControl.passportNumber.touched"
+                [ngClass]="{'alert alert-danger':formControl.passportNumber.errors}">* Required field</div>
+        </div> -->
+
+
+        <!-- ID:
+        <div [ngClass]="{'has-error':loginForm.id.errors && (loginForm.id.touched || loginForm.id.dirty)}">
+            <input type="number" formControlname="id" class="form-control">
+
+            <span class="text-danger" *ngIf="loginForm.id.errors && (loginForm.id.touched || loginForm.id.dirty)">
+                *invalid id
+                <span class="text-danger" *ngIf="loginForm.id.errors.required">
+                    *Required Field
+
+                </span>
+
+            </span>
+
+        </div> -->
+
+
+
+
+
+
+
+
+
+
+        <label >Place of issue:</label>
+        <div class="form-group">
+            <input type="string" class="form-control" placeholder="Place of issue" formControlName="placeOfIssue" onkeypress="return /[a-z]/i.test(event.key)">
+            <div *ngIf="formControl.placeOfIssue.errors && formControl.placeOfIssue.touched"
+                [ngClass]="{'text-danger':formControl.placeOfIssue.errors}">* Required field</div>
+        </div>
+
+        <label >Date Of Issue</label>
+        <div class="form-group">           
+            <input type="date" class="form-control"  formControlName="DateOfIssue" [max]="todayStr">
+            <div *ngIf="formControl.DateOfIssue.errors && formControl.DateOfIssue.touched"
+                [ngClass]="{'text-danger':formControl.DateOfIssue.errors}">* Required field</div>
+        </div>
+        
+         
+        <label >Date Of Expiry</label>
+        <div class="form-group">           
+            <input type="date" class="form-control"  formControlName="DateOfExpiry" [max]="todayStr">
+            <div *ngIf="formControl.DateOfExpiry.errors && formControl.DateOfExpiry.touched"
+                [ngClass]="{'text-danger':formControl.DateOfExpiry.errors}">* Required field</div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="form-group text-center">
+            <input type="submit" value="Submit" class="btn btn-success">
+        </div>
+    </form>
+</div>
+<!-- {{formControl.userName.errors | json}} -->

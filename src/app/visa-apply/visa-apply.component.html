@@ -1,0 +1,181 @@
+<div class="container">
+  <div class="row" style="margin-left: 300px">
+    <div class="col-md-6">
+      <form
+        [formGroup]="visaApplyForm"
+        class="border-primary rounded shadow-md"
+      >
+        <div class="form-group">
+          <h2 class="text-center text-primary">Apply Visa</h2>
+        </div>
+
+        <div class="form-group">
+          <label>Passport Number:</label>
+          <div
+            [ngClass]="{
+              'has-error':
+                formControl.passportNumber.errors &&
+                (formControl.passportNumber.touched ||
+                  formControl.passportNumber.dirty)
+            }"
+          >
+            <input
+              type="text"
+              formControlName="passportNumber"
+              maxlength="8"
+              placeholder="Enter Passport Number"
+              class="form-control"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                formControl.passportNumber.errors &&
+                (formControl.passportNumber.touched ||
+                  formControl.passportNumber.dirty)
+              "
+            >
+              *Invalid Passport Number
+              <span
+                class="text-danger"
+                *ngIf="formControl.passportNumber.errors.required"
+              >
+                *Required field
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Visa Type:</label><br />
+          <select class="form-control" formControlName="typeOfVisa">
+            <option class="form-control" value="" disabled selected hidden>
+              Please Choose...
+            </option>
+            <option value="0">Medical Visa</option>
+            <option value="1">Student Visa</option>
+            <option value="1">Film Visa</option>
+          </select>
+          <div
+            *ngIf="
+              formControl.typeOfVisa.errors && formControl.typeOfVisa.touched
+            "
+            [ngClass]="{ 'alert alert-danger': formControl.typeOfVisa.errors }"
+          >
+            * Required field
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Date Of Issue:</label>
+          <input
+            type="date"
+            class="form-control"
+            placeholder="Enter Date of Issue"
+            formControlName="dateOfIssue"
+            [max]="todayStr"
+          />
+          <div
+            *ngIf="
+              formControl.dateOfIssue.errors &&
+              formControl.dateOfIssue.touched
+            "
+            [ngClass]="{
+              'alert alert-danger': formControl.dateOfIssue.errors
+            }"
+          >
+            * Required field
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Date Of Expiry:</label>
+          <input
+            type="date"
+            class="form-control"
+            placeholder="Enter Date of Expiry"
+            formControlName="dateOfExpiry"
+          />
+          <div
+            *ngIf="
+              formControl.dateOfExpiry.errors &&
+              formControl.dateOfExpiry.touched
+            "
+            [ngClass]="{
+              'alert alert-danger': formControl.dateOfExpiry.errors
+            }"
+          >
+            * Required field
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Contact Number:</label>
+          <div
+            [ngClass]="{
+              'has-error':
+                formControl.contactNumber.errors &&
+                (formControl.contactNumber.touched ||
+                  formControl.contactNumber.dirty)
+            }"
+          >
+            <input
+              type="number"
+              formControlName="contactNumber"
+              class="form-control"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="10"
+              placeholder="Enter Contact Number"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                formControl.contactNumber.errors &&
+                (formControl.contactNumber.touched ||
+                  formControl.contactNumber.dirty)
+              "
+            >
+              *Invalid Mobile Number
+              <span
+                class="text-danger"
+                *ngIf="formControl.contactNumber.errors.required"
+              >
+                *Required field
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Country:</label>
+          <select class="form-control" formControlName="country">
+            <option class="form-control" value="" disabled selected hidden>
+              Please Choose...
+            </option>
+            <option value="0">US</option>
+            <option value="1">Europe</option>
+            <option value="1">Australia</option>
+          </select>
+          <div
+            *ngIf="
+              formControl.country.errors && formControl.country.touched
+            "
+            [ngClass]="{ 'alert alert-danger': formControl.country.errors }"
+          >
+            * Required field
+          </div>
+          <!-- <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Country"
+            formControlName="country"
+          />
+          <div
+            *ngIf="formControl.country.errors && formControl.country.touched"
+            [ngClass]="{ 'alert alert-danger': formControl.country.errors }"
+          >
+            * Required field
+          </div> -->
+        </div>
+        <div class="form-group text-center">
+          <input type="submit" value="Submit" class="btn btn-success" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+
+<main class="login-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Register</div>
+                    <div class="card-body">
+                        <form [formGroup]="signupForm" action="" method="" (ngSubmit)="onSubmit()" #mySignupForm="ngForm">
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" formControlName="email" autofocus>
+                                    <div *ngIf="signupForm.get('email').hasError('required') && mySignupForm.submitted" class="text-danger">Email id is required</div>
+                                    <div *ngIf="signupForm.get('email').hasError('email') && mySignupForm.submitted" class="text-danger">Please enter a valid email</div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="password" formControlName="password"> 
+                                    <div *ngIf="signupForm.get('password').hasError('required') && mySignupForm.submitted" class="text-danger">Password is required</div>
+                                    <!-- <div *ngIf="formControl.password.errors && formControl.password.touched" class="text-danger">Please enter a valid password</div> -->
+                                    <div *ngIf="signupForm.get('password').errors?.pattern && mySignupForm.submitted" class="text-danger">Please enter a valid password</div>
+                                        <div style="color: blue;">
+                                        <p>The password should satisfy the following rules : </p>
+                                        <ul>
+                                            <li>Must contain at least 8 characters</li>
+                                            <li>At least one upper case</li>
+                                            <li>At least one lower case</li>
+                                            <li>At least one digit</li>
+                                            <li>At least one special character</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="confirmPassword" class="col-md-4 col-form-label text-md-right">Repeat Password</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="confirmPassword" formControlName="confirmPassword">
+                                    <div *ngIf="signupForm.get('confirmPassword').hasError('required') && mySignupForm.submitted" class="text-danger">Repeat password is required</div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group row">
+                                <div class="col-md-12" style="text-align: center;">
+                                    <p style="color: red;" id="passwordMsg"></p>
+                                    <p style="color: green;" id="confirmpasswordMsg"></p>
+                                </div>
+                            </div> -->
+
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Register
+                                </button>&nbsp;
+                                <button type="reset" class="btn btn-default">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</main>
+

@@ -1,0 +1,68 @@
+
+<div class="container">
+    <div class="row"  style="margin-left: 300px;">
+        <div class="col-md-6">
+    <form [formGroup]="visaCancelForm" class="border-primary rounded shadow-md">
+        <div class="form-group">
+            <h2 class="text-center text-primary">Cancel Visa</h2>
+        </div>
+        
+        <div class="form-group">
+            <label>Passport Number:</label>
+            <div
+              [ngClass]="{
+                'has-error':
+                  formControl.passportNumber.errors &&
+                  (formControl.passportNumber.touched ||
+                    formControl.passportNumber.dirty)
+              }"
+            >
+              <input
+                type="text"
+                formControlName="passportNumber"
+                maxlength="8"
+                placeholder="Enter Passport Number"
+                class="form-control"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  formControl.passportNumber.errors &&
+                  (formControl.passportNumber.touched ||
+                    formControl.passportNumber.dirty)
+                "
+              >
+                *Invalid Passport Number
+                <span
+                  class="text-danger"
+                  *ngIf="formControl.passportNumber.errors.required"
+                >
+                  *Required field
+                </span>
+              </span>
+            </div>
+          </div>
+  
+        <div class="form-group">
+            <label>Visa Number:</label>
+            <input type="text" class="form-control" placeholder="Enter Visa Number" formControlName="visaNumber">
+            <div *ngIf="formControl.visaNumber.errors">
+                <div *ngIf="formControl.visaNumber.errors.required && formControl.visaNumber.touched "
+                    [ngClass]="{'alert alert-danger':formControl.visaNumber.errors}">* Required field</div>
+                <div *ngIf="formControl.visaNumber.errors && formControl.visaNumber.errors.minlength && formControl.visaNumber.touched "
+                    [ngClass]="{'alert alert-danger':formControl.visaNumber.errors}">* Minimum length 3 is required</div>
+            </div>
+        </div>
+        
+        <div class="wrapper">
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>&nbsp;&nbsp;
+            <button type="reset" class="btn btn-primary">
+                Reset
+            </button>
+        </div>
+    </form>
+    </div>
+    </div>
+</div>

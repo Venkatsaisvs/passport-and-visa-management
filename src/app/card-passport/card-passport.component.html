@@ -1,0 +1,77 @@
+<style>
+  #passportcard {
+    background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    margin: 0px;
+    padding: 0px;
+    min-height:max-content;
+  }
+
+  .card{
+
+
+margin-left: 50px;
+
+
+
+box-shadow: 20px;
+border-radius: 10px;
+
+}
+
+.card:hover:hover {
+    -moz-box-shadow: 0px 0px 15px #e7d8d8; 
+    -webkit-box-shadow: 0px 0px 15px #e7d8d8; 
+    box-shadow: 0px 0px 15px #e7d8d8;
+    -webkit-transition: box-shadow 0.4s ease-in-out 0s;
+   
+    transition: box-shadow 0.3s ease-in-out 0s;
+
+ 
+}
+</style>
+
+<div id="passportcard"style="padding-bottom: 400px;">
+  <h3
+    style="
+      padding-bottom: 20px;
+      padding-top: 10%;
+      font-weight: bold;
+      -webkit-text-fill-color: white;
+      text-align: center;
+    "
+  >
+  PassportServices
+  </h3>
+
+  <div
+    class="container py-6"
+    style="
+      display: inline;
+      text-align: center;
+      border-width: 10px;
+      border-color: cornflowerblue;
+    "
+  >
+    <div class="card-deck" style="padding: 50px" (click)="fnpassportapply()">
+      <div class="card p-5">
+        <a
+          class="card-block stretched-link text-decoration-none"
+    
+        >
+          <h4 class="Passportapply">Passport Apply</h4>
+        </a>
+      </div>
+      <div class="card p-5" (click)="fnpassportrenew()">
+        <a
+          class="card-block stretched-link text-decoration-none"
+     
+        >
+          <h4 class="passportrenewal">Passport Renewal</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

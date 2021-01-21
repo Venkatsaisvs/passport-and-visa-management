@@ -1,0 +1,33 @@
+  .homecontent{
+
+    background: linear-gradient(to bottom right, #33ccff 0%, #ff99cc 100%);
+      
+        font-family: sans-serif;
+
+  }
+     
+  .card{
+
+    padding: 50x;
+    margin-left: 100px;
+  }
+    #banner {
+        padding: 8em 0 5em 0;
+
+        background-position: center top;
+        background-size: cover;
+        line-height: 2 ;
+        text-align: center;
+
+        
+
+        
+    }
+
+
+    footer{
+    text-align: center;
+    padding-top: 50px;
+    background-color:azure;
+    color:black;
+    }

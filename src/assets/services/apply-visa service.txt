@@ -1,0 +1,264 @@
+visa-apply.component.ts
+
+import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { CommonService } from '../common.service';
+
+@Component({
+  selector: 'app-visa-apply',
+  templateUrl: './visa-apply.component.html',
+  styleUrls: ['./visa-apply.component.css']
+})
+export class VisaApplyComponent implements OnInit {
+  today = new Date();
+  todayStr:any;    //transformed date in "yyyy-MM-dd"
+
+  visaApplyForm:any;
+
+  userObj={
+    passportNumber:'',
+    typeOfVisa:'',
+    dateOfIssue:'',
+    dateOfExpiry:'',
+    contactNumber:'',
+    country:''
+  }
+  constructor(private fb:FormBuilder, private datepipe:DatePipe,private commonService:CommonService) { 
+    this.todayStr=this.datepipe.transform(this.today,'yyyy-MM-dd');
+    this.visaApplyForm=this.fb.group({
+      passportNumber:['',[Validators.required,Validators.pattern("[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]")]],
+      typeOfVisa:['',Validators.required],
+      dateOfIssue:['',Validators.required],
+      dateOfExpiry:['',Validators.required],
+      contactNumber:['',[Validators.required,Validators.pattern("[6789]{1}[0-9]{9}")]],
+      country:['',Validators.required]
+    })
+  }
+
+  ngOnInit(): void {
+  }
+
+  get formControl(){
+    return this.visaApplyForm.controls
+  }
+
+//   validateInput(field) {
+
+//     this.visaApplyForm.patchValue({ [field.id]: this.visaApplyForm.controls[field.id].value }); }
+
+// }
+    addUser(formObj:any){
+      console.log(formObj)
+      this.commonService.createUser(formObj).subscribe((response)=>
+      console.log("user has been added")
+      )
+    }
+
+}
+
+=========================================================================================================================================
+=============================================================================================================
+<div class="container">
+  <div class="row" style="margin-left: 300px">
+    <div class="col-md-6">
+      <form
+        [formGroup]="visaApplyForm"
+        class="border-primary rounded shadow-md"
+        #myForm="ngForm"
+      >
+        <div class="form-group">
+          <h2 class="text-center text-primary">Apply Visa</h2>
+        </div>
+
+        <div class="form-group">
+          <label>Passport Number:</label>
+          <div
+            [ngClass]="{
+              'has-error':
+                formControl.passportNumber.errors &&
+                (formControl.passportNumber.touched ||
+                  formControl.passportNumber.dirty)
+            }"
+          >
+            <input
+              type="text"
+              formControlName="passportNumber"
+              maxlength="8"
+              placeholder="Enter Passport Number"
+              class="form-control"
+              [(ngModel)]="userObj.passportNumber"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                formControl.passportNumber.errors &&
+                (formControl.passportNumber.touched ||
+                  formControl.passportNumber.dirty)
+              "
+            >
+              *Invalid Passport Number
+              <span
+                class="text-danger"
+                *ngIf="formControl.passportNumber.errors.required"
+              >
+                *Required field
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Visa Type:</label><br />
+          <select class="form-control" formControlName="typeOfVisa" [(ngModel)]="userObj.typeOfVisa">
+            <option class="form-control" value="" disabled selected hidden>
+              Please Choose...
+            </option>
+            <option value="0">Medical Visa</option>
+            <option value="1">Student Visa</option>
+            <option value="1">Film Visa</option>
+          </select>
+          <div
+            *ngIf="
+              formControl.typeOfVisa.errors && formControl.typeOfVisa.touched
+            "
+            [ngClass]="{ 'alert alert-danger': formControl.typeOfVisa.errors }"
+          >
+            * Required field
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Date Of Issue:</label>
+          <input
+            type="date"
+            class="form-control"
+            placeholder="Enter Date of Issue"
+            formControlName="dateOfIssue"
+            [max]="todayStr"
+            [(ngModel)]="userObj.dateOfIssue"
+          />
+          <div
+            *ngIf="
+              formControl.dateOfIssue.errors &&
+              formControl.dateOfIssue.touched
+            "
+            [ngClass]="{
+              'alert alert-danger': formControl.dateOfIssue.errors
+            }"
+          >
+            * Required field
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Date Of Expiry:</label>
+          <input
+            type="date"
+            class="form-control"
+            placeholder="Enter Date of Expiry"
+            formControlName="dateOfExpiry"
+            [(ngModel)]="userObj.dateOfExpiry"
+          />
+          <div
+            *ngIf="
+              formControl.dateOfExpiry.errors &&
+              formControl.dateOfExpiry.touched
+            "
+            [ngClass]="{
+              'alert alert-danger': formControl.dateOfExpiry.errors
+            }"
+          >
+            * Required field
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Contact Number:</label>
+          <div
+            [ngClass]="{
+              'has-error':
+                formControl.contactNumber.errors &&
+                (formControl.contactNumber.touched ||
+                  formControl.contactNumber.dirty)
+            }"
+          >
+            <input
+              type="number"
+              formControlName="contactNumber"
+              class="form-control"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              maxlength="10"
+              placeholder="Enter Contact Number"
+              [(ngModel)]="userObj.contactNumber"
+            />
+            <span
+              class="text-danger"
+              *ngIf="
+                formControl.contactNumber.errors &&
+                (formControl.contactNumber.touched ||
+                  formControl.contactNumber.dirty)
+              "
+            >
+              *Invalid Mobile Number
+              <span
+                class="text-danger"
+                *ngIf="formControl.contactNumber.errors.required"
+              >
+                *Required field
+              </span>
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Country:</label>
+          <select class="form-control" formControlName="country" [(ngModel)]="userObj.country">
+            <option class="form-control" value="" disabled selected hidden>
+              Please Choose...
+            </option>
+            <option value="0">US</option>
+            <option value="1">Europe</option>
+            <option value="1">Australia</option>
+          </select>
+          <div
+            *ngIf="
+              formControl.country.errors && formControl.country.touched
+            "
+            [ngClass]="{ 'alert alert-danger': formControl.country.errors }"
+          >
+            * Required field
+          </div>
+          <!-- <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Country"
+            formControlName="country"
+          />
+          <div
+            *ngIf="formControl.country.errors && formControl.country.touched"
+            [ngClass]="{ 'alert alert-danger': formControl.country.errors }"
+          >
+            * Required field
+          </div> -->
+        </div>
+        <div class="form-group text-center">
+          <input type="submit" value="Submit" class="btn btn-success" (click)="addUser(myForm.value)" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+======================================================================================================================
+==============================================================================================================
+common.service.ts
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CommonService {
+
+  constructor(private _http:HttpClient) { }
+
+  createUser(user:any){
+    return this._http.post("http://localhost:3000/users",user)
+  }
+}
